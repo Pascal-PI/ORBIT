@@ -295,6 +295,18 @@ def run_training(args, splits, size, seed, run_dir):
     return metrics
 
 
+
+def promote_default(checkpoint_path, default_path, metrics, replace=False):
+    """Preserve a better default unless replacement is explicitly requested."""
+    if default_path.exists() and not replace:
+        _, current = load_checkpoint(default_path)
+        same_split = current.get("split_fingerprint") == metrics["split_fingerprint"]
+        if not same_split or metrics["best_validation_loss"] >= current["validation_loss"]:
+            return False
+    shutil.copy2(checkpoint_path, default_path)
+    return True
+
+
 def run_experiment(args, splits, experiment_dir):
     import matplotlib
     matplotlib.use("Agg")
@@ -364,6 +376,8 @@ def main(argv=None):
     parser.add_argument("--workers", type=int, default=0, help="0 is simplest on Windows; larger values use subprocesses")
     parser.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto")
     parser.add_argument("--experiment", action="store_true")
+    parser.add_argument("--replace-default", action="store_true",
+                        help="Replace the default even without better validation loss on the same split")
     parser.add_argument("--sizes", type=int, nargs="+", default=[100, 200, 400, 800, 1600])
     parser.add_argument("--repeats", type=int, default=3)
     args = parser.parse_args(argv)
@@ -386,9 +400,16 @@ def main(argv=None):
             return run_experiment(args, splits, args.output_dir / "experiments" / stamp)
         run_dir = args.output_dir / "runs" / f"n{args.train_size}_seed{args.seed}_{stamp}"
         metrics = run_training(args, splits, args.train_size, args.seed, run_dir)
-        shutil.copy2(run_dir / "best.pt", args.output_dir / "orbit_cnn.pt")
-        save_json(args.output_dir / "latest_run.json", {"run_dir": str(run_dir), "metrics": metrics})
-        print(f"Default prediction checkpoint updated: {args.output_dir / 'orbit_cnn.pt'}", flush=True)
+        promoted = promote_default(run_dir / "best.pt", args.output_dir / "orbit_cnn.pt",
+                                   metrics, replace=args.replace_default)
+        metrics["promoted"] = promoted
+        save_json(run_dir / "metrics.json", metrics)
+        if promoted:
+            save_json(args.output_dir / "latest_run.json", {"run_dir": str(run_dir), "metrics": metrics})
+            print(f"Default prediction checkpoint updated: {args.output_dir / 'orbit_cnn.pt'}", flush=True)
+        else:
+            print("Kept the current default: this run did not improve validation loss on the same split. "
+                  "The candidate remains in its run folder; use --replace-default to override.", flush=True)
         return metrics
     except (OSError, ValueError, RuntimeError, KeyError) as error:
         parser.exit(1, f"Training failed: {error}\n")

@@ -12,8 +12,8 @@ from model import CLASS_NAMES, DEFAULT_CHECKPOINT, image_tensor, load_checkpoint
 def predict(image_path, checkpoint_path=DEFAULT_CHECKPOINT, device="auto"):
     """Return a category, softmax confidence, and all four class probabilities."""
     device = select_device(device)
-    network, _ = load_checkpoint(checkpoint_path, device)
-    inputs = image_tensor(image_path).unsqueeze(0).to(device)
+    network, checkpoint = load_checkpoint(checkpoint_path, device)
+    inputs = image_tensor(image_path, architecture=checkpoint["architecture"]).unsqueeze(0).to(device)
     with torch.inference_mode():
         probabilities = network(inputs).softmax(dim=1)[0].cpu()
     predicted = int(probabilities.argmax())

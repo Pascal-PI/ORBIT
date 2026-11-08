@@ -1,0 +1,81 @@
+{
+  "architecture": "ORBIT-MobileNetV3-Large-v1",
+  "class_names": [
+    "Plastic",
+    "Metal",
+    "Paper",
+    "Trash"
+  ],
+  "image_size": 224,
+  "normalization": "ImageNet mean/std; resize 232 then center crop 224",
+  "pretrained_weights": "MobileNet_V3_Large_Weights.IMAGENET1K_V2",
+  "train_size": 2406,
+  "seed": 42,
+  "stage": "fine",
+  "epoch": 1,
+  "validation_loss": 0.2092747862637043,
+  "validation_accuracy": 0.91,
+  "dataset_fingerprint": "2bc60fceb143b36e5b94ad5f0df555ab52e50463224e2c5f2d84a9c555b647e8",
+  "split_fingerprint": "92f36d432ce01ffe01c789d32c30fb3439b7ff799fa51bbbda3e98c36903d39c",
+  "test": {
+    "loss": 0.2204746598005295,
+    "accuracy": 0.92,
+    "images": 200,
+    "confusion_matrix": [
+      [
+        45,
+        4,
+        1,
+        0
+      ],
+      [
+        4,
+        45,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        50,
+        0
+      ],
+      [
+        3,
+        1,
+        2,
+        44
+      ]
+    ],
+    "per_class_accuracy": {
+      "Plastic": 0.9,
+      "Metal": 0.9,
+      "Paper": 1.0,
+      "Trash": 0.88
+    }
+  },
+  "head_epochs": 60,
+  "fine_epochs": 8,
+  "class_counts": {
+    "0": 846,
+    "1": 715,
+    "2": 425,
+    "3": 420
+  },
+  "class_weights": [
+    0.7109929323196411,
+    0.8412587642669678,
+    1.4152941703796387,
+    1.4321428537368774
+  ],
+  "elapsed_seconds": 1882.8613462999929,
+  "device": "cpu",
+  "torch_version": "2.7.1+cpu",
+  "baseline": {
+    "validation_loss": 0.3701689684391022,
+    "validation_accuracy": 0.85,
+    "architecture": "ORBIT-CNN-v0.1"
+  },
+  "promoted": true,
+  "promotion_rule": "lower validation loss on the same fixed split"
+}

@@ -1,11 +1,11 @@
 {
   "image": "C:\\Users\\pasca\\OneDrive\\Coding Projects\\ORBIT\\plastic\\Plastic_263.jpg",
   "category": "Plastic",
-  "confidence": 0.6964783668518066,
+  "confidence": 0.9997368454933167,
   "probabilities": {
-    "Plastic": 0.6964783668518066,
-    "Metal": 0.043254170566797256,
-    "Paper": 0.1035705953836441,
-    "Trash": 0.15669694542884827
+    "Plastic": 0.9997368454933167,
+    "Metal": 0.00013216953084338456,
+    "Paper": 7.8322205808945e-05,
+    "Trash": 5.266017251415178e-05
   }
 }

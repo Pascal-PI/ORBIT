@@ -13,7 +13,7 @@ cd "$env:USERPROFILE\OneDrive\Coding Projects\ORBIT"
 .\.venv\Scripts\python.exe predict.py ".\examples\unseen_test\Plastic_263.jpg"
 ```
 
-Try the other photos by replacing the image filename. Compare each prediction with `labels.csv`. Some predictions will be wrong. The initial 100-image baseline scored 52% and the later 400-image model scored 65% on the full 200-image test set. See `../ACCURACY_REPORT.md` for the latest result. Confidence scores are uncalibrated model scores.
+Try the other photos by replacing the image filename. Compare each prediction with `labels.csv`. Some predictions will be wrong. The initial 100-image baseline scored 52% and the later 400-image model scored 65% on the full 200-image test set. The current pretrained deployment model scores 92%. See `../TRANSFER_LEARNING_REPORT.md` for the latest result; the earlier custom-CNN report remains at `../ACCURACY_REPORT.md`. Confidence scores are uncalibrated model scores.
 
 ## Train on the existing full dataset
 
@@ -30,7 +30,7 @@ Try the other photos by replacing the image filename. Compare each prediction wi
 
 Run whichever command you want to try. Each run automatically evaluates its validation-selected checkpoint on the same 200 held-out test images and prints test accuracy. The original images stay in the four category folders. The `examples` folder is only for convenient manual testing; do not pass it as `--data-dir`.
 
-Keep the test photos separate from training. `artifacts/splits.json` already reserves 100 validation images and 200 test images. After a normal training run, `predict.py` uses that run's saved model. Earlier per-run models and metrics remain under `artifacts/runs`.
+Keep the test photos separate from training. `artifacts/splits.json` already reserves 100 validation images and 200 test images. A normal training run updates the default only if validation loss improves on the same split (or no default exists). Use `--replace-default` to override this guard. Inspect any saved candidate with `predict.py --checkpoint "path\to\best.pt"`. Earlier per-run models and metrics remain under `artifacts/runs`.
 
 ## Run the planned repeated experiment
 

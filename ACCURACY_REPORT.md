@@ -1,5 +1,7 @@
 # ORBIT accuracy investigation — November 8, 2026
 
+> Historical custom-CNN improvement report. The deployment model has since reached **92%** on the same reused benchmark; see [TRANSFER_LEARNING_REPORT.md](TRANSFER_LEARNING_REPORT.md) for the separate pretrained comparison.
+
 ## Starting point
 
 The active model at the start of this investigation was the 400-image, 15-epoch custom CNN, not the 100-image model described in the old README. Its saved test result was 130/200 correct (65%). The original 100-image baseline scored 52%.

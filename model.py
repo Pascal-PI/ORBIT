@@ -1,7 +1,8 @@
-"""ORBIT's custom CNN and the preprocessing shared by training and prediction."""
+"""ORBIT CNN/MobileNet models and architecture-specific image preprocessing."""
 
 from pathlib import Path
 import random
+from functools import lru_cache
 
 import numpy as np
 from PIL import Image, ImageEnhance, ImageOps
@@ -14,6 +15,7 @@ CLASS_NAMES = ("Plastic", "Metal", "Paper", "Trash")
 CLASS_FOLDERS = ("plastic", "metal", "paper", "general trash")
 IMAGE_SIZE = 128
 ARCHITECTURE = "ORBIT-CNN-v0.1"
+TRANSFER_ARCHITECTURE = "ORBIT-MobileNetV3-Large-v1"
 DEFAULT_CHECKPOINT = PROJECT_DIR / "artifacts" / "orbit_cnn.pt"
 
 
@@ -50,11 +52,43 @@ class ORBITCNN(nn.Module):
         return self.classifier(self.features(images))
 
 
-def image_tensor(path, augment=False):
+def make_network(architecture=ARCHITECTURE, pretrained=False):
+    if architecture == ARCHITECTURE:
+        return ORBITCNN()
+    if architecture == TRANSFER_ARCHITECTURE:
+        from torchvision.models import mobilenet_v3_large, MobileNet_V3_Large_Weights
+        network = mobilenet_v3_large(
+            weights=MobileNet_V3_Large_Weights.IMAGENET1K_V2 if pretrained else None
+        )
+        network.classifier[-1] = nn.Linear(network.classifier[-1].in_features, len(CLASS_NAMES))
+        return network
+    raise ValueError("The checkpoint uses an unsupported model architecture.")
+
+
+@lru_cache(maxsize=2)
+def transfer_transform(augment=False):
+    from torchvision import transforms
+    from torchvision.models import MobileNet_V3_Large_Weights
+    if not augment:
+        return MobileNet_V3_Large_Weights.IMAGENET1K_V2.transforms()
+    return transforms.Compose([
+        transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
+        transforms.RandomHorizontalFlip(),
+        transforms.ColorJitter(brightness=0.1, contrast=0.1, saturation=0.1),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+    ])
+
+
+def image_tensor(path, augment=False, architecture=ARCHITECTURE):
     """Load RGB pixels consistently, with random augmentation only for training."""
     try:
         with Image.open(path) as source:
             image = ImageOps.exif_transpose(source).convert("RGB")
+            if architecture == TRANSFER_ARCHITECTURE:
+                return transfer_transform(augment)(image)
+            if architecture != ARCHITECTURE:
+                raise ValueError("Unsupported preprocessing architecture.")
             image = image.resize((IMAGE_SIZE, IMAGE_SIZE), Image.Resampling.BILINEAR)
             if augment:
                 if random.random() < 0.5:
@@ -85,13 +119,15 @@ def load_checkpoint(path=DEFAULT_CHECKPOINT, device="cpu"):
     checkpoint = torch.load(path, map_location="cpu", weights_only=True)
     if not isinstance(checkpoint, dict):
         raise ValueError("This is not an ORBIT checkpoint.")
-    if checkpoint.get("architecture") != ARCHITECTURE:
+    architecture = checkpoint.get("architecture")
+    if architecture not in (ARCHITECTURE, TRANSFER_ARCHITECTURE):
         raise ValueError("The checkpoint uses an unsupported model architecture.")
     if checkpoint.get("class_names") != list(CLASS_NAMES):
         raise ValueError("The checkpoint's class order does not match ORBIT.")
-    if checkpoint.get("image_size") != IMAGE_SIZE:
+    expected_size = IMAGE_SIZE if architecture == ARCHITECTURE else 224
+    if checkpoint.get("image_size") != expected_size:
         raise ValueError("The checkpoint's input size does not match ORBIT.")
-    network = ORBITCNN()
+    network = make_network(architecture)
     network.load_state_dict(checkpoint["model_state_dict"], strict=True)
     network.to(device).eval()
     return network, checkpoint

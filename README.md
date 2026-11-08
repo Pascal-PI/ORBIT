@@ -1,14 +1,16 @@
 # ORBIT Trash Predictor
 
-ORBIT AI v0.1 is a local PyTorch classifier with a custom CNN. It uses no API keys or paid services.
+ORBIT is a local PyTorch classifier with a custom CNN and an optional pretrained MobileNetV3 deployment model. Inference uses no API keys or paid services.
 
 ### Current model
 
-The default checkpoint now scores **85% (170/200)** on the unchanged held-out test set, up from **65% (130/200)**. It was trained on **1,600 images for 30 epochs**, with validation-loss-based learning-rate reductions; validation loss selected epoch 28. Test recall is Plastic 88%, Metal 84%, Paper 94%, and Trash 74%. This is one training seed on the dataset benchmark; robot-camera accuracy has not been measured. See `ACCURACY_REPORT.md` and `artifacts/accuracy_improvement.json` for the evidence.
+The default model is now **MobileNetV3-Large with ImageNet pretraining**, trained on all **2,406 training-pool images**. It scores **92% (184/200)** on the existing fixed benchmark, up from **85% (170/200)** for the preserved custom CNN. Test recall: Plastic **90%**, Metal **90%**, Paper **100% (50/50)**, Trash **88%**. Validation loss selected the first fine-tuning epoch from the completed 60-epoch head / 8-epoch fine-tuning run.
+
+This is one training seed on a reused benchmark, not a fresh independent test or robot-camera accuracy claim. The pretrained deployment comparison is separate from the original custom-CNN dataset-size experiment. See [TRANSFER_LEARNING_REPORT.md](TRANSFER_LEARNING_REPORT.md) and `artifacts/transfer_improvement.json` for the protocol and verification. `predict.py` uses the new model automatically; the old 85% checkpoint remains in its run folder.
 
 ### Model history
 
-The original 100-image, 15-epoch baseline scored **52%** on the fixed 200-image test set. The later 400-image, 15-epoch model scored **65%** (Plastic 84%, Metal 38%, Paper 80%, Trash 58%). Both use training seed 42 and split seed 1729. See `ACCURACY_REPORT.md` for the latest measured result and diagnosis; `artifacts/latest_run.json` records the current default model. The previous model and source files are preserved in `artifacts/before_accuracy_improvement/`.
+The original 100-image, 15-epoch baseline scored **52%** on the fixed 200-image test set. The later 400-image, 15-epoch model scored **65%** (Plastic 84%, Metal 38%, Paper 80%, Trash 58%). Both use training seed 42 and split seed 1729. See `ACCURACY_REPORT.md` for the historical custom-CNN diagnosis and `TRANSFER_LEARNING_REPORT.md` for the current deployment result; `artifacts/latest_run.json` records the current default model. The previous model and source files are preserved in `artifacts/before_accuracy_improvement/`.
 
 Five integration checks passed, covering saved-model loading and an unseen-image prediction, disjoint/nested splits, duplicate/conflicting labels, split reuse and dataset changes, and clear errors for missing images. A separate four-run, one-epoch experiment verified CSV aggregation and graph generation; those short runs are workflow checks, not the final experiment results. Details are in `artifacts/verification.json`.
 
@@ -19,19 +21,18 @@ git clone https://github.com/Pascal-PI/ORBIT.git
 cd ORBIT
 ```
 
-This private repository includes the 85% checkpoint, fixed split, baseline and improved run results, and the four image folders. Install the Python dependencies using the instructions below, then run `predict.py`; retraining is optional. The `.venv` environment and local backup folder are excluded from Git. Recorded run JSON files retain the original machine paths as provenance; image paths inside the split and training manifests are relative to the project.
+This private repository includes the 92% deployment checkpoint and preserved 85% custom-CNN checkpoint, fixed split, baseline and improved run results, and the four image folders. Install the Python dependencies using the instructions below, then run `predict.py`; retraining is optional. The `.venv` environment and local backup folder are excluded from Git. Recorded run JSON files retain the original machine paths as provenance; image paths inside the split and training manifests are relative to the project.
 
 The source images are from RealWaste. See [DATASET_NOTICE.md](DATASET_NOTICE.md) for attribution and the dataset license notice.
 
-## Run ORBIT AI v0.1
+## Run ORBIT
 
 Use Python 3.12. The project has its own `.venv`; activation is optional when using its Python executable directly.
 
-From PowerShell, open the project and train a first model:
+After installing dependencies, use the included 92% model from the project folder:
 
 ```powershell
-cd "$env:USERPROFILE\OneDrive\Coding Projects\ORBIT"
-.\.venv\Scripts\python.exe train.py --train-size 1600 --epochs 30 --lr-schedule plateau
+.\.venv\Scripts\python.exe predict.py plastic\Plastic_263.jpg --json
 ```
 
 Predict a photo from the fixed, unseen test set:
@@ -49,19 +50,19 @@ Predict your own photo, or return JSON for a future dashboard:
 
 `predict.py` returns one of **Plastic, Metal, Paper, Trash**, a confidence score, and all four class probabilities. Confidence is an **uncalibrated softmax score**, not a proven probability that the answer is correct. For a Raspberry Pi, start with `--device cpu --threads 2`.
 
-To reproduce the improved training configuration:
+To reproduce the preserved 85% custom-CNN training configuration (the better deployment default is kept):
 
 ```powershell
 .\.venv\Scripts\python.exe train.py --train-size 1600 --epochs 30 --lr-schedule plateau
 ```
 
-A plain `train.py` command now uses 1,600 training images and 30 epochs. The learning rate remains constant unless `--lr-schedule plateau` is supplied; that option halves it after validation loss stalls for four epochs (minimum 0.000001). Learning rates are recorded in each run's `history.csv`, and the schedule name is recorded in `metrics.json`. Checkpoint selection still uses validation loss, with test evaluation afterward. To reproduce the old dataset-size protocol, specify `--epochs 15 --lr-schedule constant` for every size.
+A normal `train.py` run preserves a better existing default; every candidate is still saved in its own run folder. A plain `train.py` command uses 1,600 training images and 30 epochs. The learning rate remains constant unless `--lr-schedule plateau` is supplied; that option halves it after validation loss stalls for four epochs (minimum 0.000001). Learning rates are recorded in each run's `history.csv`, and the schedule name is recorded in `metrics.json`. Checkpoint selection still uses validation loss, with test evaluation afterward. To reproduce the old dataset-size protocol, specify `--epochs 15 --lr-schedule constant` for every size.
 
 ### Install on another computer
 
 ```powershell
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cpu
+.\.venv\Scripts\python.exe -m pip install torch==2.7.1 torchvision==0.22.1 --index-url https://download.pytorch.org/whl/cpu
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
@@ -71,9 +72,10 @@ The CPU setup works without an NVIDIA GPU. On a Raspberry Pi, use a compatible n
 
 | File | Purpose |
 | --- | --- |
-| `model.py` | Three convolution, normalization, ReLU, and pooling blocks; 128 × 128 RGB preprocessing; four-output classifier; checkpoint loading |
+| `model.py` | Custom CNN and MobileNetV3 architectures, their matching preprocessing, and checkpoint loading |
 | `train.py` | Fixed dataset splits, balanced training subsets, validation, held-out testing, checkpoints, repeated experiments, and plots |
-| `predict.py` | Image classification with readable output or JSON |
+| `predict.py` | Image classification with readable output or JSON; uses the checkpoint’s architecture and preprocessing |
+| `train_transfer.py` | Separate pretrained MobileNetV3 deployment comparison using the existing fixed split |
 | `requirements.txt` | Reproducible dependency versions |
 
 The data stays in the existing `plastic`, `metal`, `paper`, and `general trash` folders. The last folder maps to the output label **Trash**. Training does not move or modify the original images.
@@ -104,9 +106,19 @@ Results go into a new `artifacts/experiments/<timestamp>` folder:
 - `accuracy_vs_dataset_size.png`: mean test accuracy with error bars of one sample standard deviation. These show variability across training seeds, not confidence intervals.
 - Each run's `best.pt`, `history.csv`, `metrics.json`, `test_predictions.csv`, and `train_images.json`.
 
-Single training runs create the same per-run files under `artifacts/runs/`. They also update `artifacts/orbit_cnn.pt`, which is the default checkpoint for `predict.py`, and `artifacts/latest_run.json`. Earlier run folders are retained. Experiment runs do not replace the default prediction checkpoint; use `predict.py --checkpoint "path\to\best.pt"` to inspect a particular experiment model.
+Single training runs create the same per-run files under `artifacts/runs/`. They update `artifacts/orbit_cnn.pt` (the default for `predict.py`) and `artifacts/latest_run.json` only when no default exists or validation loss improves on the same split. Use `--replace-default` to explicitly override this guard. Earlier run folders are retained. Experiment runs do not replace the default prediction checkpoint; use `predict.py --checkpoint "path\to\best.pt"` to inspect a particular experiment model.
 
 Run `.\.venv\Scripts\python.exe -m unittest discover -s tests -v` for the isolated workflow check. Run `train.py --help` or `predict.py --help` for options. No inference results are fabricated: `predict.py` requires an actual saved checkpoint. A working prediction is the first milestone; measured accuracy determines how useful the model is.
+
+## Pretrained deployment comparison
+
+```powershell
+.\.venv\Scripts\python.exe train_transfer.py --promote
+```
+
+This trains a pretrained MobileNetV3-Large candidate on all 2,406 training-pool images, using class-balanced loss, a cached-feature classifier stage, and fine-tuning. It promotes the candidate only if validation loss beats the current default on the same split. The first training run downloads the official ImageNet weights; prediction loads all weights from the saved checkpoint and works offline. See [TRANSFER_LEARNING_REPORT.md](TRANSFER_LEARNING_REPORT.md) for the protocol and measured results.
+
+Use `train.py` for the original custom-CNN dataset-size experiment. External ImageNet pretraining changes the research condition, so keep the MobileNet comparison separate from that experiment. Legacy CNN checkpoints remain supported with their original 128-pixel preprocessing; MobileNet checkpoints use their required 224-pixel preprocessing automatically.
 
 ## 🚀 Our model development roadmap
 

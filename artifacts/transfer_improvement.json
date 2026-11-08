@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-08",
+  "previous_test_accuracy": 0.85,
+  "new_test_accuracy": 0.92,
+  "test_images": 200,
+  "test_correct": 184,
+  "same_dataset_and_split": true,
+  "entire_training_pool_used_without_holdout_overlap": true,
+  "checkpoint_matches_selected_run": true,
+  "prediction_cli_matches_test_evaluation": true,
+  "checkpoint_has_lowest_validation_loss": true,
+  "integration_tests_passed": 5,
+  "pip_check": "No broken requirements found",
+  "previous_per_class": {
+    "Plastic": 0.88,
+    "Metal": 0.84,
+    "Paper": 0.94,
+    "Trash": 0.74
+  },
+  "new_per_class": {
+    "Plastic": 0.9,
+    "Metal": 0.9,
+    "Paper": 1.0,
+    "Trash": 0.88
+  },
+  "previous_errors_fixed": 22,
+  "previous_correct_regressed": 8,
+  "run_dir": "C:\\Users\\pasca\\OneDrive\\Coding Projects\\ORBIT\\artifacts\\transfer\\transfer_20261108T230433885034Z",
+  "benchmark_status": "Reused 200-image benchmark; not a fresh independent test"
+}
