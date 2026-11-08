@@ -1,0 +1,64 @@
+{
+  "run_dir": "C:\\Users\\pasca\\OneDrive\\Coding Projects\\ORBIT\\artifacts\\runs\\n1600_seed42_20261108T140412751639Z",
+  "metrics": {
+    "train_size": 1600,
+    "seed": 42,
+    "epochs": 30,
+    "best_epoch": 28,
+    "best_validation_loss": 0.3701689684391022,
+    "best_validation_accuracy": 0.85,
+    "test": {
+      "loss": 0.45632598638534544,
+      "accuracy": 0.85,
+      "images": 200,
+      "confusion_matrix": [
+        [
+          44,
+          3,
+          0,
+          3
+        ],
+        [
+          4,
+          42,
+          1,
+          3
+        ],
+        [
+          1,
+          1,
+          47,
+          1
+        ],
+        [
+          3,
+          5,
+          5,
+          37
+        ]
+      ],
+      "per_class_accuracy": {
+        "Plastic": 0.88,
+        "Metal": 0.84,
+        "Paper": 0.94,
+        "Trash": 0.74
+      }
+    },
+    "classes": [
+      "Plastic",
+      "Metal",
+      "Paper",
+      "Trash"
+    ],
+    "dataset_fingerprint": "2bc60fceb143b36e5b94ad5f0df555ab52e50463224e2c5f2d84a9c555b647e8",
+    "split_fingerprint": "92f36d432ce01ffe01c789d32c30fb3439b7ff799fa51bbbda3e98c36903d39c",
+    "split_file": "C:\\Users\\pasca\\OneDrive\\Coding Projects\\ORBIT\\artifacts\\splits.json",
+    "device": "cpu",
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "lr_schedule": "plateau",
+    "weight_decay": 0.0001,
+    "elapsed_seconds": 2018.3631083000218,
+    "torch_version": "2.7.1+cpu"
+  }
+}

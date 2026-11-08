@@ -1,0 +1,201 @@
+image,actual,predicted,confidence,correct
+plastic/Plastic_263.jpg,Plastic,Paper,0.5546972751617432,False
+plastic/Plastic_820.jpg,Plastic,Trash,0.3261234164237976,False
+plastic/Plastic_442.jpg,Plastic,Trash,0.3364335894584656,False
+plastic/Plastic_224.jpg,Plastic,Metal,0.49340492486953735,False
+plastic/Plastic_622.jpg,Plastic,Plastic,0.9260498881340027,True
+plastic/Plastic_674.jpg,Plastic,Plastic,0.7904542684555054,True
+plastic/Plastic_330.jpg,Plastic,Metal,0.4044245779514313,False
+plastic/Plastic_710.jpg,Plastic,Plastic,0.8233002424240112,True
+plastic/Plastic_100.jpg,Plastic,Plastic,0.5291343331336975,True
+plastic/Plastic_6.jpg,Plastic,Metal,0.3674282729625702,False
+plastic/Plastic_835.jpg,Plastic,Plastic,0.4314812421798706,True
+plastic/Plastic_724.jpg,Plastic,Plastic,0.8355779647827148,True
+plastic/Plastic_663.jpg,Plastic,Plastic,0.5158197283744812,True
+plastic/Plastic_686.jpg,Plastic,Plastic,0.842960774898529,True
+plastic/Plastic_758.jpg,Plastic,Plastic,0.7727847099304199,True
+plastic/Plastic_164.jpg,Plastic,Metal,0.5252960920333862,False
+plastic/Plastic_303.jpg,Plastic,Plastic,0.6139811277389526,True
+plastic/Plastic_510.jpg,Plastic,Paper,0.60658860206604,False
+plastic/Plastic_777.jpg,Plastic,Trash,0.3429322838783264,False
+plastic/Plastic_404.jpg,Plastic,Metal,0.5417988896369934,False
+plastic/Plastic_38.jpg,Plastic,Plastic,0.4244551956653595,True
+plastic/Plastic_549.jpg,Plastic,Trash,0.40684279799461365,False
+plastic/Plastic_457.jpg,Plastic,Plastic,0.5757553577423096,True
+plastic/Plastic_368.jpg,Plastic,Plastic,0.5585074424743652,True
+plastic/Plastic_238.jpg,Plastic,Plastic,0.45398667454719543,True
+plastic/Plastic_782.jpg,Plastic,Plastic,0.4861789345741272,True
+plastic/Plastic_171.jpg,Plastic,Metal,0.448500394821167,False
+plastic/Plastic_298.jpg,Plastic,Trash,0.420585960149765,False
+plastic/Plastic_837.jpg,Plastic,Plastic,0.4009334146976471,True
+plastic/Plastic_118.jpg,Plastic,Plastic,0.8788778781890869,True
+plastic/Plastic_451.jpg,Plastic,Trash,0.3965458273887634,False
+plastic/Plastic_314.jpg,Plastic,Paper,0.5985806584358215,False
+plastic/Plastic_394.jpg,Plastic,Plastic,0.7729555368423462,True
+plastic/Plastic_288.jpg,Plastic,Paper,0.4269005060195923,False
+plastic/Plastic_108.jpg,Plastic,Metal,0.596795916557312,False
+plastic/Plastic_912.jpg,Plastic,Metal,0.5075584650039673,False
+plastic/Plastic_571.jpg,Plastic,Plastic,0.7873450517654419,True
+plastic/Plastic_106.jpg,Plastic,Metal,0.46285489201545715,False
+plastic/Plastic_712.jpg,Plastic,Plastic,0.44069138169288635,True
+plastic/Plastic_742.jpg,Plastic,Plastic,0.7481685280799866,True
+plastic/Plastic_554.jpg,Plastic,Paper,0.3469146192073822,False
+plastic/Plastic_548.jpg,Plastic,Trash,0.31650739908218384,False
+plastic/Plastic_540.jpg,Plastic,Plastic,0.7142951488494873,True
+plastic/Plastic_198.jpg,Plastic,Trash,0.35313335061073303,False
+plastic/Plastic_861.jpg,Plastic,Plastic,0.4543862044811249,True
+plastic/Plastic_364.jpg,Plastic,Trash,0.2967701852321625,False
+plastic/Plastic_111.jpg,Plastic,Metal,0.478557288646698,False
+plastic/Plastic_632.jpg,Plastic,Plastic,0.6370205283164978,True
+plastic/Plastic_500.jpg,Plastic,Trash,0.37086379528045654,False
+plastic/Plastic_347.jpg,Plastic,Plastic,0.5381321310997009,True
+metal/Metal_476.jpg,Metal,Metal,0.4659873843193054,True
+metal/Metal_206.jpg,Metal,Trash,0.4077606201171875,False
+metal/Metal_749.jpg,Metal,Paper,0.45509517192840576,False
+metal/Metal_440.jpg,Metal,Trash,0.37172991037368774,False
+metal/Metal_110.jpg,Metal,Paper,0.5376220941543579,False
+metal/Metal_584.jpg,Metal,Trash,0.3432192802429199,False
+metal/Metal_162.jpg,Metal,Paper,0.3491074740886688,False
+metal/Metal_49.jpg,Metal,Paper,0.6411694884300232,False
+metal/Metal_583.jpg,Metal,Plastic,0.815200686454773,False
+metal/Metal_671.jpg,Metal,Paper,0.37511762976646423,False
+metal/Metal_624.jpg,Metal,Paper,0.6655266880989075,False
+metal/Metal_711.jpg,Metal,Trash,0.4069852828979492,False
+metal/Metal_614.jpg,Metal,Trash,0.4015997052192688,False
+metal/Metal_700.jpg,Metal,Metal,0.39164817333221436,True
+metal/Metal_661.jpg,Metal,Trash,0.4141610264778137,False
+metal/Metal_650.jpg,Metal,Trash,0.35543692111968994,False
+metal/Metal_709.jpg,Metal,Plastic,0.274273157119751,False
+metal/Metal_364.jpg,Metal,Metal,0.41836878657341003,True
+metal/Metal_216.jpg,Metal,Plastic,0.5664340257644653,False
+metal/Metal_234.jpg,Metal,Metal,0.8461389541625977,True
+metal/Metal_361.jpg,Metal,Paper,0.5192242860794067,False
+metal/Metal_502.jpg,Metal,Trash,0.37750864028930664,False
+metal/Metal_81.jpg,Metal,Paper,0.3620367646217346,False
+metal/Metal_67.jpg,Metal,Metal,0.376090407371521,True
+metal/Metal_244.jpg,Metal,Plastic,0.7672687768936157,False
+metal/Metal_430.jpg,Metal,Metal,0.4107559621334076,True
+metal/Metal_480.jpg,Metal,Paper,0.41951510310173035,False
+metal/Metal_104.jpg,Metal,Paper,0.4056822657585144,False
+metal/Metal_645.jpg,Metal,Metal,0.5997473001480103,True
+metal/Metal_534.jpg,Metal,Trash,0.39101430773735046,False
+metal/Metal_109.jpg,Metal,Paper,0.4274841547012329,False
+metal/Metal_152.jpg,Metal,Trash,0.473959743976593,False
+metal/Metal_154.jpg,Metal,Trash,0.40923744440078735,False
+metal/Metal_314.jpg,Metal,Metal,0.4940849542617798,True
+metal/Metal_78.jpg,Metal,Trash,0.3132079243659973,False
+metal/Metal_230.jpg,Metal,Metal,0.39261874556541443,True
+metal/Metal_694.jpg,Metal,Metal,0.5285245180130005,True
+metal/Metal_723.jpg,Metal,Metal,0.3994709849357605,True
+metal/Metal_659.jpg,Metal,Trash,0.3481203317642212,False
+metal/Metal_471.jpg,Metal,Trash,0.40918275713920593,False
+metal/Metal_241.jpg,Metal,Plastic,0.6382721066474915,False
+metal/Metal_373.jpg,Metal,Paper,0.42297059297561646,False
+metal/Metal_653.jpg,Metal,Paper,0.6487420797348022,False
+metal/Metal_761.jpg,Metal,Trash,0.4956464469432831,False
+metal/Metal_61.jpg,Metal,Paper,0.39532870054244995,False
+metal/Metal_465.jpg,Metal,Metal,0.40068572759628296,True
+metal/Metal_663.jpg,Metal,Trash,0.34554579854011536,False
+metal/Metal_121.jpg,Metal,Paper,0.49168211221694946,False
+metal/Metal_77.jpg,Metal,Trash,0.3991028964519501,False
+metal/Metal_439.jpg,Metal,Metal,0.37174761295318604,True
+paper/Paper_83.jpg,Paper,Paper,0.662830650806427,True
+paper/Paper_63.jpg,Paper,Plastic,0.9357742667198181,False
+paper/Paper_260.jpg,Paper,Metal,0.4459741711616516,False
+paper/Paper_342.jpg,Paper,Paper,0.5184103846549988,True
+paper/Paper_89.jpg,Paper,Paper,0.7666323781013489,True
+paper/Paper_245.jpg,Paper,Paper,0.5379772782325745,True
+paper/Paper_129.jpg,Paper,Plastic,0.6502918601036072,False
+paper/Paper_54.jpg,Paper,Paper,0.7105028033256531,True
+paper/Paper_464.jpg,Paper,Paper,0.4620717763900757,True
+paper/Paper_277.jpg,Paper,Paper,0.4392867386341095,True
+paper/Paper_136.jpg,Paper,Plastic,0.48791515827178955,False
+paper/Paper_447.jpg,Paper,Paper,0.7312245965003967,True
+paper/Paper_237.jpg,Paper,Paper,0.6134728193283081,True
+paper/Paper_360.jpg,Paper,Paper,0.44533586502075195,True
+paper/Paper_157.jpg,Paper,Paper,0.5634119510650635,True
+paper/Paper_302.jpg,Paper,Paper,0.5804140567779541,True
+paper/Paper_103.jpg,Paper,Paper,0.5834367275238037,True
+paper/Paper_8.jpg,Paper,Paper,0.5752438306808472,True
+paper/Paper_495.jpg,Paper,Paper,0.6417940855026245,True
+paper/Paper_85.jpg,Paper,Paper,0.4783190190792084,True
+paper/Paper_228.jpg,Paper,Paper,0.6733025908470154,True
+paper/Paper_176.jpg,Paper,Plastic,0.459319144487381,False
+paper/Paper_460.jpg,Paper,Paper,0.8057032823562622,True
+paper/Paper_274.jpg,Paper,Paper,0.6120339035987854,True
+paper/Paper_197.jpg,Paper,Plastic,0.38511306047439575,False
+paper/Paper_351.jpg,Paper,Paper,0.46809688210487366,True
+paper/Paper_113.jpg,Paper,Paper,0.752517819404602,True
+paper/Paper_388.jpg,Paper,Metal,0.5822817087173462,False
+paper/Paper_354.jpg,Paper,Paper,0.5059771537780762,True
+paper/Paper_10.jpg,Paper,Paper,0.6853355765342712,True
+paper/Paper_368.jpg,Paper,Paper,0.7003633379936218,True
+paper/Paper_116.jpg,Paper,Paper,0.8517029285430908,True
+paper/Paper_446.jpg,Paper,Paper,0.8680082559585571,True
+paper/Paper_22.jpg,Paper,Paper,0.7607374787330627,True
+paper/Paper_421.jpg,Paper,Paper,0.7655365467071533,True
+paper/Paper_74.jpg,Paper,Paper,0.48927614092826843,True
+paper/Paper_386.jpg,Paper,Paper,0.4540090560913086,True
+paper/Paper_500.jpg,Paper,Paper,0.4426332712173462,True
+paper/Paper_294.jpg,Paper,Paper,0.5309157967567444,True
+paper/Paper_361.jpg,Paper,Paper,0.7991392016410828,True
+paper/Paper_196.jpg,Paper,Trash,0.343273788690567,False
+paper/Paper_79.jpg,Paper,Paper,0.7079026103019714,True
+paper/Paper_62.jpg,Paper,Paper,0.8160430788993835,True
+paper/Paper_298.jpg,Paper,Paper,0.6886889338493347,True
+paper/Paper_271.jpg,Paper,Paper,0.4951867461204529,True
+paper/Paper_229.jpg,Paper,Paper,0.5665604472160339,True
+paper/Paper_370.jpg,Paper,Paper,0.5916755199432373,True
+paper/Paper_20.jpg,Paper,Paper,0.6149090528488159,True
+paper/Paper_344.jpg,Paper,Trash,0.3218908905982971,False
+paper/Paper_166.jpg,Paper,Metal,0.44809508323669434,False
+general trash/Miscellaneous Trash_433.jpg,Trash,Plastic,0.5979204773902893,False
+general trash/Miscellaneous Trash_172.jpg,Trash,Metal,0.5369859933853149,False
+general trash/Miscellaneous Trash_468.jpg,Trash,Paper,0.928852915763855,False
+general trash/Miscellaneous Trash_330.jpg,Trash,Trash,0.3720223307609558,True
+general trash/Miscellaneous Trash_126.jpg,Trash,Plastic,0.4968264698982239,False
+general trash/Miscellaneous Trash_390.jpg,Trash,Trash,0.4239155948162079,True
+general trash/Miscellaneous Trash_303.jpg,Trash,Trash,0.45513105392456055,True
+general trash/Miscellaneous Trash_148.jpg,Trash,Trash,0.37695345282554626,True
+general trash/Miscellaneous Trash_353.jpg,Trash,Paper,0.7027826905250549,False
+general trash/Miscellaneous Trash_251.jpg,Trash,Paper,0.3703650236129761,False
+general trash/Miscellaneous Trash_161.jpg,Trash,Trash,0.38344326615333557,True
+general trash/Miscellaneous Trash_365.jpg,Trash,Paper,0.8387419581413269,False
+general trash/Miscellaneous Trash_60.jpg,Trash,Paper,0.3584893047809601,False
+general trash/Miscellaneous Trash_305.jpg,Trash,Trash,0.4683869481086731,True
+general trash/Miscellaneous Trash_213.jpg,Trash,Metal,0.5213579535484314,False
+general trash/Miscellaneous Trash_393.jpg,Trash,Trash,0.4571293592453003,True
+general trash/Miscellaneous Trash_33.jpg,Trash,Metal,0.4274744391441345,False
+general trash/Miscellaneous Trash_17.jpg,Trash,Trash,0.4305016100406647,True
+general trash/Miscellaneous Trash_241.jpg,Trash,Trash,0.36657068133354187,True
+general trash/Miscellaneous Trash_24.jpg,Trash,Metal,0.46885210275650024,False
+general trash/Miscellaneous Trash_200.jpg,Trash,Paper,0.36006712913513184,False
+general trash/Miscellaneous Trash_137.jpg,Trash,Paper,0.833962082862854,False
+general trash/Miscellaneous Trash_396.jpg,Trash,Trash,0.4444088339805603,True
+general trash/Miscellaneous Trash_383.jpg,Trash,Trash,0.35233941674232483,True
+general trash/Miscellaneous Trash_191.jpg,Trash,Metal,0.42158961296081543,False
+general trash/Miscellaneous Trash_179.jpg,Trash,Paper,0.8286571502685547,False
+general trash/Miscellaneous Trash_306.jpg,Trash,Trash,0.4834953844547272,True
+general trash/Miscellaneous Trash_410.jpg,Trash,Plastic,0.532798707485199,False
+general trash/Miscellaneous Trash_73.jpg,Trash,Trash,0.40584954619407654,True
+general trash/Miscellaneous Trash_70.jpg,Trash,Trash,0.4212864339351654,True
+general trash/Miscellaneous Trash_103.jpg,Trash,Trash,0.37769001722335815,True
+general trash/Miscellaneous Trash_428.jpg,Trash,Metal,0.49997127056121826,False
+general trash/Miscellaneous Trash_382.jpg,Trash,Metal,0.33179429173469543,False
+general trash/Miscellaneous Trash_244.jpg,Trash,Trash,0.29841968417167664,True
+general trash/Miscellaneous Trash_78.jpg,Trash,Trash,0.33514827489852905,True
+general trash/Miscellaneous Trash_260.jpg,Trash,Trash,0.3257446587085724,True
+general trash/Miscellaneous Trash_315.jpg,Trash,Plastic,0.35380518436431885,False
+general trash/Miscellaneous Trash_309.jpg,Trash,Trash,0.3522017002105713,True
+general trash/Miscellaneous Trash_141.jpg,Trash,Metal,0.41230353713035583,False
+general trash/Miscellaneous Trash_39.jpg,Trash,Trash,0.4115716814994812,True
+general trash/Miscellaneous Trash_225.jpg,Trash,Trash,0.47824299335479736,True
+general trash/Miscellaneous Trash_217.jpg,Trash,Metal,0.3911866545677185,False
+general trash/Miscellaneous Trash_116.jpg,Trash,Trash,0.40923547744750977,True
+general trash/Miscellaneous Trash_285.jpg,Trash,Paper,0.5529530048370361,False
+general trash/Miscellaneous Trash_247.jpg,Trash,Trash,0.4179007112979889,True
+general trash/Miscellaneous Trash_199.jpg,Trash,Trash,0.38480687141418457,True
+general trash/Miscellaneous Trash_27.jpg,Trash,Plastic,0.38887229561805725,False
+general trash/Miscellaneous Trash_105.jpg,Trash,Trash,0.35284313559532166,True
+general trash/Miscellaneous Trash_276.jpg,Trash,Metal,0.7380191683769226,False
+general trash/Miscellaneous Trash_82.jpg,Trash,Trash,0.3540041744709015,True

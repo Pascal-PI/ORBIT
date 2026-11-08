@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-08",
+  "previous_test_accuracy": 0.65,
+  "new_test_accuracy": 0.85,
+  "test_images": 200,
+  "test_correct": 170,
+  "same_dataset_and_split": true,
+  "checkpoint_matches_selected_run": true,
+  "prediction_cli_matches_test_evaluation": true,
+  "workflow_integration_tests_passed": 1,
+  "pip_check": "No broken requirements found",
+  "learning_rates_used": [
+    0.001,
+    0.0005
+  ],
+  "previous_per_class": {
+    "Plastic": 0.84,
+    "Metal": 0.38,
+    "Paper": 0.8,
+    "Trash": 0.58
+  },
+  "new_per_class": {
+    "Plastic": 0.88,
+    "Metal": 0.84,
+    "Paper": 0.94,
+    "Trash": 0.74
+  },
+  "run_dir": "C:\\Users\\pasca\\OneDrive\\Coding Projects\\ORBIT\\artifacts\\runs\\n1600_seed42_20261108T140412751639Z"
+}

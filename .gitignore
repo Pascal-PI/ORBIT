@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+artifacts/*
+!artifacts/orbit_cnn.pt
+!artifacts/splits.json
+!artifacts/latest_run.json
+!artifacts/accuracy_improvement.json
+!artifacts/example_prediction.json
+!artifacts/verification.json
+!artifacts/runs/
+artifacts/runs/*
+!artifacts/runs/n100_seed42_20261024T202922149691Z/
+!artifacts/runs/n400_seed42_20261024T204643653709Z/
+!artifacts/runs/n1600_seed42_20261108T140412751639Z/

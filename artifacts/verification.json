@@ -1,0 +1,22 @@
+{
+  "integration_tests_passed": 5,
+  "experiment_workflow_check": "Four one-epoch runs; workflow verification only, not the final science-fair experiment",
+  "experiment_summary_and_graph_verified": true,
+  "baseline_training_images": 100,
+  "baseline_epochs": 15,
+  "baseline_test_images": 200,
+  "baseline_test_accuracy": 0.52,
+  "example_prediction": {
+    "image": "C:\\Users\\pasca\\OneDrive\\Coding Projects\\ORBIT\\plastic\\Plastic_263.jpg",
+    "category": "Paper",
+    "confidence": 0.5546972751617432,
+    "probabilities": {
+      "Plastic": 0.1297481656074524,
+      "Metal": 0.09019197523593903,
+      "Paper": 0.5546972751617432,
+      "Trash": 0.22536255419254303
+    }
+  },
+  "example_true_category": "Plastic",
+  "example_image_is_held_out": true
+}
